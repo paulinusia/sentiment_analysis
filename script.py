@@ -214,11 +214,11 @@ def perform(train_set, test_set, x, y):
    #print('score: ',round(score* 100,2), '%')
    return score
    
-def streamline(data, dict, y_val, folds, datafilename):
+def streamline(data, dict, y_val, folds, datafilename, vectorname):
        export_csv = data.to_csv(datafilename, index=None, header=True)
-       vectorize(data, dict, './vector_test.csv')
+       vectorize(data, dict, vectorname)
 
-       k_fold_log_reg(folds, './vector_test.csv', y_val)
+       k_fold_log_reg(folds, vectorname, y_val)
 
        
 
@@ -279,8 +279,9 @@ if __name__ == '__main__':
 
    #k_fold_log_reg(10,'./vector_train.csv', y_train)
    #k_fold_log_reg(10, './vector_train.csv', y_train)
-   streamline(train, listed, y_test, 10, 'train.csv')
-   streamline(test, listed, y_test, 10, 'test.csv')
+   streamline(train, listed, y_train, 10, 'train.csv', 'vector_train.csv')
+
+   streamline(test, listed, y_test, 10, 'test.csv', 'vector_test.csv')
 
 
 
